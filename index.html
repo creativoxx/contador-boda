@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:transparent;
+font-family:Poppins,sans-serif;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+}
+
+.contenedor{
+
+padding:25px;
+border-radius:25px;
+
+text-align:center;
+width:100%;
+max-width:900px;
+
+}
+
+h1{
+
+font-family:Cinzel,serif;
+font-size:42px;
+color:#b88a2f;
+margin-bottom:10px;
+}
+
+.subtitulo{
+
+color:white;
+font-size:18px;
+margin-bottom:35px;
+letter-spacing:2px;
+}
+
+.contador{
+
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:18px;
+
+}
+
+.caja{
+
+width:130px;
+padding:20px;
+border-radius:18px;
+
+background:rgba(255,255,255,.12);
+
+backdrop-filter:blur(6px);
+
+border:1px solid rgba(255,255,255,.18);
+
+}
+
+.numero{
+
+font-size:54px;
+font-weight:bold;
+color:#d4af37;
+font-family:Cinzel,serif;
+}
+
+.texto{
+
+margin-top:8px;
+font-size:16px;
+color:white;
+letter-spacing:1px;
+}
+
+.mensaje{
+
+margin-top:35px;
+font-size:22px;
+color:white;
+font-family:Cinzel;
+}
+
+@media(max-width:650px){
+
+.numero{
+font-size:40px;
+}
+
+.caja{
+
+width:95px;
+padding:15px;
+
+}
+
+.texto{
+font-size:13px;
+}
+
+h1{
+
+font-size:30px;
+
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="contenedor">
+
+<h1>Nuestra Boda</h1>
+
+<div class="subtitulo">
+FALTAN
+</div>
+
+<div class="contador">
+
+<div class="caja">
+<div class="numero" id="dias"></div>
+<div class="texto">DÍAS</div>
+</div>
+
+<div class="caja">
+<div class="numero" id="horas"></div>
+<div class="texto">HORAS</div>
+</div>
+
+<div class="caja">
+<div class="numero" id="minutos"></div>
+<div class="texto">MINUTOS</div>
+</div>
+
+<div class="caja">
+<div class="numero" id="segundos"></div>
+<div class="texto">SEGUNDOS</div>
+</div>
+
+</div>
+
+<div class="mensaje">
+Para decir <span style="color:#d4af37;">"Sí, acepto"</span>
+</div>
+
+</div>
+
+<script>
+
+const fechaBoda = new Date("2026-10-18T00:00:00").getTime();
+
+function actualizar(){
+
+const ahora = new Date().getTime();
+
+const diferencia = fechaBoda-ahora;
+
+if(diferencia<=0){
+
+document.querySelector(".contenedor").innerHTML="<h1>¡Llegó nuestro gran día! ❤️</h1>";
+
+return;
+
+}
+
+const dias=Math.floor(diferencia/(1000*60*60*24));
+
+const horas=Math.floor((diferencia%(1000*60*60*24))/(1000*60*60));
+
+const minutos=Math.floor((diferencia%(1000*60*60))/(1000*60));
+
+const segundos=Math.floor((diferencia%(1000*60))/1000);
+
+document.getElementById("dias").innerHTML=dias;
+document.getElementById("horas").innerHTML=horas;
+document.getElementById("minutos").innerHTML=minutos;
+document.getElementById("segundos").innerHTML=segundos;
+
+}
+
+setInterval(actualizar,1000);
+
+actualizar();
+
+</script>
+
+</body>
+</html>
